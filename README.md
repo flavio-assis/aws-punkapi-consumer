@@ -87,7 +87,7 @@ Neste repositório estão definidas duas propostas de código para Lambda Functi
 - Chamada apenas uma vez na API e escrita no Kinesis Stream
 - Chamadas assíncronas na API e envio em lote para o Kinesis Stream
 
-em `terraform/test/terraform.tfvars` a versão unitária do código está sendo utilizada por default.
+Em `terraform/test/terraform.tfvars` a versão unitária do código está sendo utilizada por default.
 
 Para utilizar a versão em lote você deve alterar a variável `lambda_function_handler` 
 no arquivo `terraform/test/terraform.tfvars` de forma que ela tenha o seguinte valor:
@@ -95,6 +95,12 @@ no arquivo `terraform/test/terraform.tfvars` de forma que ela tenha o seguinte v
 ```
 lambda_function_handler = "main_async.lambda_handler"
 ```
+Você também pode configurar o máximo de chamadas por lote aterando a variável `lambda_get_api_max_requests`:
+Exemplo:
+```
+lambda_get_api_max_requests = 500
+```
+
 ---
 # Estrutura do repositório
 ```
