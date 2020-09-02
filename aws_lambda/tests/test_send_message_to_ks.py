@@ -14,6 +14,6 @@ class TestSendMessageToKinesisStream(TestCase):
         mock_boto3_client.return_value.__enter__.put_records.return_value = None
 
         msg = 'foo text'
-        send_message_to_ks(msg=msg)
+        send_message_to_ks(msg=msg, stream_name='foo')
 
         mock_boto3_client.assert_called_once_with('kinesis')

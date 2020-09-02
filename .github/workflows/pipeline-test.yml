@@ -26,4 +26,4 @@ jobs:
       - name: Make Init
         run: make init ENV=test
       - name: Make Apply
-        run: make init ENV=test
+        run: make apply ENV=test

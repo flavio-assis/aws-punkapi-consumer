@@ -32,7 +32,7 @@ async def get_records_from_api(url: str, session: ClientSession):
         raise err
 
 
-def send_messages_to_ks(records):
+def send_messages_to_ks(records, stream_name):
     print('Sending message to Kinesis Stream')
     client = boto3.client('kinesis')
     return client.put_records(
@@ -41,7 +41,7 @@ def send_messages_to_ks(records):
                 'Data': record + '\n',
                 'PartitionKey': '1'
             } for record in records],
-        StreamName=os.environ['KINESIS_STREAM_NAME']
+        StreamName=stream_name
     )
 
 
@@ -63,8 +63,11 @@ async def main():
     async with ClientSession() as session:
         data_records = await asyncio.gather(*[run_collector(URL, session) for i in range(MAX_REQUESTS)])
 
-    send_messages_to_ks(data_records)
+    send_messages_to_ks(records=data_records, stream_name=os.environ['KINESIS_STREAM_NAME'])
 
 
 def lambda_handler(event, context):
     asyncio.run(main())
+
+if __name__ == '__main__':
+    lambda_handler(0,0)
