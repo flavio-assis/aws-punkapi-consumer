@@ -6,7 +6,7 @@ on:
 
 jobs:
   CI-CD-Pipeline:
-    name: Build Artifact
+    name: Apply Changes on Infrastructure
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID}}
