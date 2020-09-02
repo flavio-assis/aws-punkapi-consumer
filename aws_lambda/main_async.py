@@ -6,6 +6,7 @@ import boto3
 from aiohttp import ClientSession
 from aiohttp.http_exceptions import HttpProcessingError
 from retrying import retry
+from typing import List
 
 URL: str = 'https://api.punkapi.com/v2/beers/random'
 MAX_REQUESTS: int = int(os.getenv('MAX_REQUESTS', 500))
@@ -32,7 +33,7 @@ async def get_records_from_api(url: str, session: ClientSession):
         raise err
 
 
-def send_messages_to_ks(records, stream_name):
+def send_messages_to_ks(records: List[str], stream_name: str):
     print('Sending message to Kinesis Stream')
     client = boto3.client('kinesis')
     return client.put_records(
@@ -68,6 +69,3 @@ async def main():
 
 def lambda_handler(event, context):
     asyncio.run(main())
-
-if __name__ == '__main__':
-    lambda_handler(0,0)

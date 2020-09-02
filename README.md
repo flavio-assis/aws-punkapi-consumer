@@ -30,7 +30,7 @@ Neste sentido, foi implementada a solução:
 - Um CloudWatch Event dispara a cada 5 minutos uma execução de uma função Lambda
 - Esta função Lambda alimenta o Kinesis Stream
 - O Kinesis Stream em questão tem como saída um Kinesis Firehose
-- Este Firehose, por sua vezm agrega todas as entradas para guardar em um bucket S3
+- Este Firehose, por sua vez agrega todas as entradas para guardar em um bucket S3
 
 ---
 # Desenho da Arquitetura

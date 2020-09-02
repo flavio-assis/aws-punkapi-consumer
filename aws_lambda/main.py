@@ -4,10 +4,10 @@ import os
 import boto3
 import requests
 
-URL = 'https://api.punkapi.com/v2/beers/random'
+URL: str = 'https://api.punkapi.com/v2/beers/random'
 
 
-def get_record_from_api(url):
+def get_record_from_api(url: str):
     try:
         response = requests.get(url)
         return response.json()[0]
@@ -16,7 +16,7 @@ def get_record_from_api(url):
         raise err
 
 
-def send_message_to_ks(msg, stream_name):
+def send_message_to_ks(msg: str, stream_name: str):
     client = boto3.client('kinesis')
     return client.put_record(
         Data=bytes(msg, 'utf-8'),
