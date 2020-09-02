@@ -82,6 +82,20 @@ Finalmente, vocẽ deve executar o Terraform Apply, pelo comando a seguir:
 make apply ENV=<< Ambiente que você deseja iniciar >>
 ```
 ---
+# Lambda Functions
+Neste repositório estão definidas duas propostas de código para Lambda Function:
+- Chamada apenas uma vez na API e escrita no Kinesis Stream
+- Chamadas assíncronas na API e envio em lote para o Kinesis Stream
+
+em `terraform/test/terraform.tfvars` a versão unitária do código está sendo utilizada por default.
+
+Para utilizar a versão em lote você deve alterar o arquivo `terraform/test/terraform.tfvars` de forma
+que ele tenha o seguinte valor:
+
+```
+
+```
+---
 # Estrutura do repositório
 ```
 .

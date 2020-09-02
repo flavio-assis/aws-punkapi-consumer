@@ -16,6 +16,3 @@ Com ela feita, fui ler sobre os serviços que compunham a arquitetura proposta p
 
 Em um segundo momento, coloquei no papel tudo o que tinha pra ser feito e comecei a estruturar de forma lógica
 os passos e a cronograma para resolver o desafio.
-
-## AWS provider do Terraform 
-Comecei por estruturar meu repositório de forma simples, 
