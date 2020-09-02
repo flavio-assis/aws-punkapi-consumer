@@ -89,11 +89,11 @@ Neste repositório estão definidas duas propostas de código para Lambda Functi
 
 em `terraform/test/terraform.tfvars` a versão unitária do código está sendo utilizada por default.
 
-Para utilizar a versão em lote você deve alterar o arquivo `terraform/test/terraform.tfvars` de forma
-que ele tenha o seguinte valor:
+Para utilizar a versão em lote você deve alterar a variável `lambda_function_handler` 
+no arquivo `terraform/test/terraform.tfvars` de forma que ela tenha o seguinte valor:
 
 ```
-
+"main_async.lambda_handler"
 ```
 ---
 # Estrutura do repositório

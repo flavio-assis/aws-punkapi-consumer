@@ -40,15 +40,16 @@ module "kinesis_firehose" {
 }
 
 module "lambda_function" {
-  source                  = "../modules/lambda"
-  environment             = var.environment
-  lambda_function_name    = var.lambda_function_name
-  lambda_function_handler = var.lambda_function_handler
-  role_arn                = module.iam.s3_to_kinesis_stream_arn
-  filename                = var.lambda_function_filename
-  kinesis_stream_name     = var.kinesis_stream_name
-  depends_on              = [module.iam]
-  execution_timeout       = var.execution_timeout
+  source                      = "../modules/lambda"
+  environment                 = var.environment
+  lambda_function_name        = var.lambda_function_name
+  lambda_function_handler     = var.lambda_function_handler
+  role_arn                    = module.iam.s3_to_kinesis_stream_arn
+  filename                    = var.lambda_function_filename
+  kinesis_stream_name         = var.kinesis_stream_name
+  depends_on                  = [module.iam]
+  execution_timeout           = var.execution_timeout
+  lambda_get_api_max_requests = var.lambda_get_api_max_requests
 }
 
 module "lambda_trigger" {

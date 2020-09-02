@@ -11,6 +11,7 @@ resource "aws_lambda_function" "lambda_function" {
   environment {
     variables = {
       KINESIS_STREAM_NAME = "${var.kinesis_stream_name}"
+      MAX_REQUESTS        = "${var.lambda_get_api_max_requests}"
     }
   }
   timeout = var.execution_timeout

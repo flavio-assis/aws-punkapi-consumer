@@ -38,3 +38,9 @@ variable "execution_timeout" {
   type        = number
   default     = 60
 }
+
+variable "lambda_get_api_max_requests" {
+  description = "Max Punk Api calls in Lambda Function"
+  type        = number
+  default     = 1
+}

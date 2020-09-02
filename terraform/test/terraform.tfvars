@@ -12,3 +12,4 @@ lambda_function_filename         = "../../aws_lambda/aws_lambda.zip"
 lambda_function_handler          = "main.lambda_handler"
 lambda_function_name             = "PunkApiCollector"
 s3_to_kinesis_stream_role_name   = "S3ToKinesisStream"
+lambda_get_api_max_requests      = 1
