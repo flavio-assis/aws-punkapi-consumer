@@ -28,6 +28,6 @@ zip_main_async_py:
 zip_lambda_function: zip_packages zip_main_py zip_main_async_py
 
 unittests:
-	cd aws_lambda && python -m unittest discover
+	cd aws_lambda && python3 -m unittest discover
 
 tests:	unittests	validate
