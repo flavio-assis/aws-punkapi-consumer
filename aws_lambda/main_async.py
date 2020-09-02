@@ -8,7 +8,7 @@ from aiohttp.http_exceptions import HttpProcessingError
 from retrying import retry
 
 URL: str = 'https://api.punkapi.com/v2/beers/random'
-MAX_REQUESTS: int = os.getenv('MAX_REQUESTS', 500)
+MAX_REQUESTS: int = int(os.getenv('MAX_REQUESTS', 500))
 
 
 @retry(stop_max_attempt_number=5, wait_random_min=0.5, wait_random_max=3)
@@ -61,7 +61,7 @@ async def run_collector(url: str, session: ClientSession):
 
 async def main():
     async with ClientSession() as session:
-        data_records = await asyncio.gather(*[run_collector(URL, session) for i in range(500)])
+        data_records = await asyncio.gather(*[run_collector(URL, session) for i in range(MAX_REQUESTS)])
 
     send_messages_to_ks(data_records)
 

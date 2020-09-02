@@ -93,7 +93,7 @@ Para utilizar a versão em lote você deve alterar a variável `lambda_function_
 no arquivo `terraform/test/terraform.tfvars` de forma que ela tenha o seguinte valor:
 
 ```
-"main_async.lambda_handler"
+lambda_function_handler = "main_async.lambda_handler"
 ```
 ---
 # Estrutura do repositório
@@ -171,5 +171,4 @@ Faça o Terraform init:
 ```
 make init ENV=prod
 ```
-
 ---
