@@ -2,26 +2,28 @@ name: PunkApi AWS Consumer CI/CD
 on: [push]
 
 jobs:
-  terraform-init:
-    name: Terraform Init
+  Build:
+    name: Build Artifact
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Make Init
         run: make init ENV=test
-
-  terraform-plan:
-    name: Terraform Plan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+      - name: install python requirements
+        run: pip3 install -r aws_lambda/requirements.txt --upgrade
+      - name: Make Tests
+        run: make tests
+      - name: Zip Lambda Function
+        run: make zip_lambda_function
       - name: Make Plan
         run: make plan ENV=test
 
-  execute-tests:
-    name: Execute Tests
+  Deploy:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Make Tests
-        run: make tests
+      - name: Make Init
+        run: make init ENV=test
+      - name: Make Apply
+        run: make init ENV=test

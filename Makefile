@@ -1,6 +1,6 @@
 ENV=test
 
-.PHONY: init	plan	validate	apply	zip_packages	zip_main_py	zip_main_async_py	unittests
+.PHONY: init	plan	validate	apply	build_packages	zip_main_py	zip_main_async_py	unittests tests
 
 all:  init  plan
 
@@ -16,6 +16,9 @@ validate:
 apply:
 	cd terraform/${ENV} && terraform apply -auto-approve
 
+build_packages:
+	mkdir -p aws_lambda/package && pip3 install -r aws_lambda/requirements.txt --target  aws_lambda/package --upgrade
+
 zip_packages:
 	cd aws_lambda/package && zip -r9 ../aws_lambda.zip .
 
@@ -25,7 +28,7 @@ zip_main_py:
 zip_main_async_py:
 	cd aws_lambda && zip -g aws_lambda.zip main_async.py
 
-zip_lambda_function: zip_packages zip_main_py zip_main_async_py
+zip_lambda_function: build_packages	zip_packages zip_main_py zip_main_async_py
 
 unittests:
 	cd aws_lambda && python3 -m unittest discover
