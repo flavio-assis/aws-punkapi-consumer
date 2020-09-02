@@ -56,8 +56,8 @@ resource "aws_iam_role_policy" "inline_firehole_policy" {
 EOF
 }
 
-resource "aws_iam_role" "s3_to_kinesis_stream" {
-  name               = var.s3_to_kinesis_stream_role_name
+resource "aws_iam_role" "lambda_to_kinesis_stream" {
+  name               = var.lambda_to_kinesis_stream_role_name
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -80,8 +80,8 @@ EOF
 
 resource "aws_iam_role_policy" "inline_lambda_policy" {
   name   = "LambdaInlinePolicy"
-  role   = aws_iam_role.s3_to_kinesis_stream.id
-  depends_on = [aws_iam_role.s3_to_kinesis_stream]
+  role   = aws_iam_role.lambda_to_kinesis_stream.id
+  depends_on = [aws_iam_role.lambda_to_kinesis_stream]
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -89,7 +89,8 @@ resource "aws_iam_role_policy" "inline_lambda_policy" {
     {
       "Effect": "Allow",
       "Action": [
-        "kinesis:PutRecords"
+        "kinesis:PutRecords",
+        "kinesis:PutRecord"
       ],
       "Resource": "${var.kinesis_stream_arn}"
     }

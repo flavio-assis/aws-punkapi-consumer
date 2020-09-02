@@ -4,12 +4,12 @@ provider "aws" {
 }
 
 module "iam" {
-  source                         = "../modules/iam"
-  firehose_role_name             = var.firehose_role_name
-  s3_to_kinesis_stream_role_name = var.s3_to_kinesis_stream_role_name
-  kinesis_stream_arn             = module.kinesis_stream.kinesis_stream_arn
-  bucket_arn                     = module.aws_s3.bucket_arn
-  depends_on                     = [module.kinesis_stream, module.aws_s3]
+  source                             = "../modules/iam"
+  firehose_role_name                 = var.firehose_role_name
+  lambda_to_kinesis_stream_role_name = var.lambda_to_kinesis_stream_role_name
+  kinesis_stream_arn                 = module.kinesis_stream.kinesis_stream_arn
+  bucket_arn                         = module.aws_s3.bucket_arn
+  depends_on                         = [module.kinesis_stream, module.aws_s3]
 }
 
 module "cloud_watch" {
@@ -44,7 +44,7 @@ module "lambda_function" {
   environment                 = var.environment
   lambda_function_name        = var.lambda_function_name
   lambda_function_handler     = var.lambda_function_handler
-  role_arn                    = module.iam.s3_to_kinesis_stream_arn
+  role_arn                    = module.iam.lambda_to_kinesis_stream_arn
   filename                    = var.lambda_function_filename
   kinesis_stream_name         = var.kinesis_stream_name
   depends_on                  = [module.iam]

@@ -3,7 +3,7 @@ output "firehose_role_arn" {
   description = "Firehose Role ARN"
 }
 
-output "s3_to_kinesis_stream_arn" {
-  value       = aws_iam_role.s3_to_kinesis_stream.arn
-  description = "S3 To Kinesis Role ARN"
+output "lambda_to_kinesis_stream_arn" {
+  value       = aws_iam_role.lambda_to_kinesis_stream.arn
+  description = "Lambda To Kinesis Role ARN"
 }

@@ -4,10 +4,10 @@ variable "firehose_role_name" {
   default     = "FirehoseRole"
 }
 
-variable "s3_to_kinesis_stream_role_name" {
-  description = "Name of the role chosen for S3"
+variable "lambda_to_kinesis_stream_role_name" {
+  description = "Name of the role chosen for Lambda"
   type        = string
-  default     = "S3ToKinesisStream"
+  default     = "LambdaToKinesisStream"
 }
 
 

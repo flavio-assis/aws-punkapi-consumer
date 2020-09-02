@@ -16,7 +16,7 @@ variable "lambda_function_handler" {
 }
 
 variable "role_arn" {
-  description = "S3 to Kinesis Stream Role ARN"
+  description = "Lambda to Kinesis Stream Role ARN"
   type        = string
   default     = ""
 }
