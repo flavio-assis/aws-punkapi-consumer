@@ -5,7 +5,7 @@ on:
       - 'master'
 
 jobs:
-  Ci/CD Pipeline:
+  CI CD Pipeline:
     name: Build Artifact
     runs-on: ubuntu-latest
     env:
