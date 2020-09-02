@@ -1,5 +1,5 @@
 resource "aws_iam_role" "firehose_role" {
-  name = var.firehose_role_name
+  name               = var.firehose_role_name
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -17,10 +17,10 @@ EOF
 }
 
 resource "aws_iam_role_policy" "inline_firehole_policy" {
-  name   = "FirehoseInlinePolicy"
-  role   = aws_iam_role.firehose_role.id
+  name       = "FirehoseInlinePolicy"
+  role       = aws_iam_role.firehose_role.id
   depends_on = [aws_iam_role.firehose_role]
-  policy = <<EOF
+  policy     = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -79,10 +79,10 @@ EOF
 }
 
 resource "aws_iam_role_policy" "inline_lambda_policy" {
-  name   = "LambdaInlinePolicy"
-  role   = aws_iam_role.lambda_to_kinesis_stream.id
+  name       = "LambdaInlinePolicy"
+  role       = aws_iam_role.lambda_to_kinesis_stream.id
   depends_on = [aws_iam_role.lambda_to_kinesis_stream]
-  policy = <<EOF
+  policy     = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
