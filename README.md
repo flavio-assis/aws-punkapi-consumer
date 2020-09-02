@@ -1,3 +1,4 @@
+![PunkApi AWS Consumer CI/CD](https://github.com/flavio-assis/aws-punkapi-consumer/workflows/PunkApi%20AWS%20Consumer%20CI/CD/badge.svg)
 # PunkApi AWS Consumer
 Neste projeto eu implemento um consumidor para a PunkAPI utilizando serviços de nuvem da AWS (Lambda Function, Kinesis Stream, Kinesis Firehose e S3) e Terraform como minha Infraestrutura como código.
 
