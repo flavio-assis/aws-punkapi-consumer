@@ -2,7 +2,6 @@
 ## Por onde eu começo?
 Este texto descreve brevemente os principais passos e pesquisas que se fizeram necessárias para realizar este projeto.
 
----
 Vale ressaltar que antes de fazer a PunkApi AWS Consumer,
 nunca tinha trabalhado com versionamento de infraestrutura na AWS, somente no GCP.
 
@@ -53,7 +52,7 @@ Todo o processo de testes e rebuilds se tornou repetitivo demais ao longo do apr
 Dessa forma temos um yml de instruções para o CI/CD do projeto em `.github/workflows/pipeline-test.yml`
 
 ---
-## Refeências mais notáveis
+## Referências mais notáveis
 Ao longo do processo de aprendizagem, os artigos que mais elucidaram a resolução e me guiaram na resolução do problema foram:
 
 - [Persist Streaming Data to Amazon S3 using Amazon Kinesis Firehose and AWS Lambda](https://aws.amazon.com/blogs/big-data/persist-streaming-data-to-amazon-s3-using-amazon-kinesis-firehose-and-aws-lambda/)
