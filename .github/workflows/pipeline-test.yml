@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Make Init
         run: make init ENV=test
+      - name: install setuptools
+        run: pip3 install setuptools pip --upgrade
       - name: install python requirements
         run: pip3 install -r aws_lambda/requirements.txt --upgrade
       - name: Make Tests
