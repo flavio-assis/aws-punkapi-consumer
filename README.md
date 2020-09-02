@@ -102,6 +102,14 @@ Exemplo:
 lambda_get_api_max_requests = 500
 ```
 
+## Como adicionar novos pacotes python à lambda function
+
+Para inserir pacotes python, utilize o aquivo `requirements.txt` e depois execute o comando:
+
+```
+make zip_lambda_function
+```
+
 ---
 # Estrutura do repositório
 ```
@@ -113,7 +121,9 @@ lambda_get_api_max_requests = 500
 │   ├── package         # Pacotes necessários para o funcionamento da Lambda Function
 │   └── tests           # Testes unitários da Lambda Function
 |       ├── __init__.py
+|       ├── test_get_record_from_api_async.py
 |       ├── test_get_record_from_api.py
+|       ├── test_send_bulk_messages_to_ks.py
 |       └── test_send_message_to_ks.py
 |
 ├── LICENSE             
