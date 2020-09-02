@@ -12,7 +12,7 @@ URL: str = 'https://api.punkapi.com/v2/beers/random'
 MAX_REQUESTS: int = int(os.getenv('MAX_REQUESTS', 500))
 
 
-@retry(stop_max_attempt_number=5, wait_random_min=0.5, wait_random_max=3)
+@retry(stop_max_attempt_number=5, wait_random_min=1, wait_random_max=3)
 async def get_records_from_api(url: str, session: ClientSession):
     """
     Getting data from Punk API
