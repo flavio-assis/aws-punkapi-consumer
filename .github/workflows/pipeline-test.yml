@@ -1,0 +1,25 @@
+name: PunkApi AWS Consumer CI/CD
+on: [push]
+
+jobs:
+  terraform-init:
+    name: Terraform Init
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Make Init
+        run: make init ENV=test
+
+  terraform-plan:
+    name: Terraform Plan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make Plan
+        run: make plan ENV=test
+
+  execute-tests:
+    name: Execute Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make Tests
+        run: make tests
