@@ -1,8 +1,10 @@
+//Environment
 variable "environment" {
   description = "Defines the environment of the infrastructure"
   type        = string
 }
 
+//IAM
 variable "firehose_role_name" {
   description = "Name of the role chosen for Firehose"
   type        = string
@@ -15,6 +17,7 @@ variable "s3_to_kinesis_stream_role_name" {
   default     = "S3ToKinesisStream"
 }
 
+// Kinesis
 variable "kinesis_stream_name" {
   description = "Kinesis Stream Name"
   type        = string
@@ -39,6 +42,18 @@ variable "kinesis_firehose_name" {
   default     = "PunkApiDeliveryToS3"
 }
 
+variable "kinesis_firehose_buffer_interval" {
+  description = "Firehose buffer interval"
+  type        = number
+  default     = 60
+}
+variable "kinesis_firehose_buffer_size" {
+  description = "Firehose buffer size"
+  type        = number
+  default     = 5
+}
+
+// S3
 variable "bucket_name" {
   description = "AWS S3 bucket name"
   type        = string
@@ -51,17 +66,7 @@ variable "lambda_function_name" {
   default     = "PunkApiCollector"
 }
 
-variable "kinesis_firehose_buffer_interval" {
-  description = "Firehose buffer interval"
-  type        = number
-  default     = 60
-}
-variable "kinesis_firehose_buffer_size" {
-  description = "Firehose buffer size"
-  type        = number
-  default     = 5
-}
-
+// Lambda
 variable "lambda_function_handler" {
   description = "Handler for Lambda function"
   type        = string
