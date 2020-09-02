@@ -1,8 +1,11 @@
 name: PunkApi AWS Consumer CI/CD
-on: [push]
+on:
+  push:
+    branches:
+      - 'master'
 
 jobs:
-  Build:
+  Ci/CD Pipeline:
     name: Build Artifact
     runs-on: ubuntu-latest
     env:
@@ -13,25 +16,15 @@ jobs:
       - uses: actions/checkout@v2
       - name: Make Init
         run: make init ENV=test
-      - name: install setuptools
+      - name: Upgrade pip and setuptools
         run: pip3 install setuptools pip --upgrade
-      - name: install python requirements
+      - name: Install python requirements.txt
         run: pip3 install -r aws_lambda/requirements.txt --upgrade
-      - name: Make Tests
+      - name: Perform Tests
         run: make tests
       - name: Zip Lambda Function
         run: make zip_lambda_function
       - name: Make Plan
         run: make plan ENV=test
-
-  Deploy:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Make Init
-        run: make init ENV=test
-        env:
-          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID}}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      - name: Deploy
+        run: make apply
