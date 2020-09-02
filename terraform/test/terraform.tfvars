@@ -1,0 +1,14 @@
+bucket_name                      = "raw-bucket-flavio-de-assis"
+environment                      = "test"
+execution_timeout                = 60
+firehose_role_name               = "FirehoseRole"
+kinesis_firehose_buffer_interval = 60
+kinesis_firehose_buffer_size     = 5
+kinesis_firehose_name            = "PunkApiDeliveryToS3"
+kinesis_retention_period         = 24
+kinesis_shard_count              = 1
+kinesis_stream_name              = "KinesisStreamPunkApi"
+lambda_function_filename         = "../../aws_lambda/aws_lambda.zip"
+lambda_function_handler          = "main.lambda_handler"
+lambda_function_name             = "PunkApiCollector"
+s3_to_kinesis_stream_role_name   = "S3ToKinesisStream"
