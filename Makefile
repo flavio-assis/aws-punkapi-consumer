@@ -1,6 +1,6 @@
 ENV=test
 
-.PHONY: init	plan	validate	apply	build_packages	zip_main_py	zip_main_async_py	unittests tests
+.PHONY: init plan validate apply destroy build_packages zip_main_py zip_main_async_py unittests tests
 
 all:  init  plan
 
@@ -15,6 +15,9 @@ validate:
 
 apply:
 	cd terraform/${ENV} && terraform apply -auto-approve
+
+destroy:
+	cd terraform/${ENV} && terraform destroy -auto-approve
 
 build_packages:
 	mkdir -p aws_lambda/package && pip3 install -r aws_lambda/requirements.txt --target  aws_lambda/package --upgrade
