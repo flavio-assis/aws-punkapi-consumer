@@ -102,7 +102,7 @@ Exemplo:
 lambda_get_api_max_requests = 500
 ```
 
-## Como adicionar novos pacotes python à lambda function
+## Como adicionar novos pacotes python à Lambda Function
 
 Para inserir pacotes python, utilize o aquivo `requirements.txt` e depois execute o comando:
 
@@ -114,17 +114,20 @@ make zip_lambda_function
 # Estrutura do repositório
 ```
 .
-├── aws_lambda          # Define o código da Lambda Function        
-│   ├── aws_lambda.zip  # Zipfile contendo o código a ser upado para a Cloud
-│   ├── main_async.py   # Nesta versão da Lambda Function, ela faz requests assíncronos para o endpoint da PunkApi e insere os registros em lote no Stream
-│   ├── main.py         # Nesta versão, a Lambda Function faz uma chamada unitária ao endpoint e faz a ingestão unitária no Stream
-│   ├── package         # Pacotes necessários para o funcionamento da Lambda Function
-│   └── tests           # Testes unitários da Lambda Function
-|       ├── __init__.py
-|       ├── test_get_record_from_api_async.py
-|       ├── test_get_record_from_api.py
-|       ├── test_send_bulk_messages_to_ks.py
-|       └── test_send_message_to_ks.py
+├── aws_lambda              # Define o código da Lambda Function        
+│   ├── aws_lambda.zip      # Zipfile contendo o código a ser upado para a Cloud
+│   ├── main_async.py       # Nesta versão da Lambda Function, ela faz requests assíncronos para o endpoint da PunkApi e insere os registros em lote no Stream
+│   ├── main.py             # Nesta versão, a Lambda Function faz uma chamada unitária ao endpoint e faz a ingestão unitária no Stream
+│   ├── requirements.txt    # Pacotes necessários para o funcionamento da Lambda Function
+│   └── tests               # Testes unitários da Lambda Function
+│       ├── __init__.py
+│       ├── test_get_record_from_api_async.py
+│       ├── test_get_record_from_api.py
+│       ├── test_send_bulk_messages_to_ks.py
+│       ├── test_send_message_to_ks.py
+│       └── utils
+│           ├── __init__.py
+│           └── response_mocker.py
 |
 ├── LICENSE             
 ├── Makefile            # Define alguns comandos prontos para facilitar a vida do usuário e facilitar a implementação de um CI/CD
@@ -134,6 +137,9 @@ make zip_lambda_function
 │   │   ├── cloud_watch
 │   │   │   ├── cloud_watch.tf
 │   │   │   ├── outputs.tf
+│   │   │   └── variables.tf
+│   │   ├── cloud_watch_logs
+│   │   │   ├── cloud_watch_logs.tf
 │   │   │   └── variables.tf
 │   │   ├── iam
 │   │   │   ├── iam.tf
@@ -157,19 +163,20 @@ make zip_lambda_function
 │   │       ├── outputs.tf
 │   │       ├── s3.tf
 │   │       └── variables.tf
-│   └── test                   # Proposta de ambiente minimamente viável para a solução 
+│   └── test                    # Proposta de ambiente minimamente viável para a solução 
 │       ├── backend.tf
 │       ├── main.tf
 │       ├── terraform.tfvars
 │       └── variables.tf
-└── THE_ROAD_SO_FAR.md         # Um pouco das minhas descobertas
+└── THEROADSOFAR.md             # Um pouco das minhas descobertas
 ```
 ---
 # Nota:
 Para esta etapa do desenvolvimento, somente o ambiente `test` foi impementado.
+
 Você deverá definir os outros ambientes de sua necessidade (Produção, Staging, QA, etc)
 no nível do `terraform/<< seu ambiente >>`.
-
+ 
 Lembre-se que este nome deve ser o mesmo que você irá utilizar
 quando for realizar as chamadas do `make`.
 

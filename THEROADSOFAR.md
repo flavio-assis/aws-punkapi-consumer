@@ -3,7 +3,7 @@
 Este texto descreve brevemente os principais passos e pesquisas que se fizeram necessárias para realizar este projeto.
 
 Vale ressaltar que antes de fazer a PunkApi AWS Consumer,
-nunca tinha trabalhado com versionamento de infraestrutura na AWS, somente no GCP.
+nunca tinha trabalhado com versionamento de infraestrutura por Terraform na AWS, somente no GCP.
 
 Também não conhecia com profundidade o Kinesis e suas facilidades.
 
@@ -38,19 +38,38 @@ com permissionamento muito restrito para server de backend para o terraform.
 A princípio o código deveria realizar uma tarefa muito simples: fazer um `GET` no endpoint  `/v2/beers/random` da Punk Api e ingerir este
 registro no Kinesis Stream. 
 
-Porém, surgiu a curiosidade de tentar ingerir mais um registro por vez e decidi por fazer um código paralelo apenas para verificação.
+Porém, surgiu a curiosidade de tentar ingerir mais um registro por vez e decidi por fazer um código paralelo, apenas para verificação.
 Percebi que o Kinesis Firehose não separa os eventos _json_ que recebe por uma quebra de linha e portanto decidi por adicioná-la.
 
-O código para verificação deste cenário está em `aws_lambda/main_async.py`
+O código para verificação deste cenário está em `aws_lambda/main_async.py`.
+
+Escrevi também algumas propostas iniciais de testes unitários. Estes estão localizads no diretório
+`aws_lambda/tests`.
 
 ---
 ## O Makefile
 Devido a complexidade de lidar com ambientes e realizar os testes necessários antes de fazer o _deploy_ da infraestrutura, decidi utilizar um Makefile
 contendo as instruções para facilitar a utilização deste projeto.
 
+Nele eu defini as ações:
+
+- __init__: Executa o Terraform init 
+- __plan__: Executa o Terraform plan
+- __validate__: Executa o Terraform validate
+- __apply__: Executa o Terraform apply
+- __destroy__: Executa o Terraform destroy
+- __build_packages__: Cria uma pata chamada `package` no diretório `aws_lambda` responsável por conter as bibliotecas necessárias para o funcionamento da Lambda Function
+- __zip_packages__: Faz um zip do diretório `aws_lambda/package` e adiciona em `aws_lambda.zip`
+- __zip_main_py__: Faz um zip do arquivo `main.py` e adiciona em `aws_lambda.zip`
+- __zip_main_async_py__: Faz um zip do arquivo `main_async.py` e adiciona em `aws_lambda.zip`
+- __zip_lambda_function__: Executa os processos `build_packages`, `zip_packages`, `zip_main_py` e `zip_main_async_py`
+- __unittests__: Executa os testes unitários para a Lambda Function
+- __tests__: Executa os processos `unittests` e `validate`
+
 ---
 ## Github Actions
-Todo o processo de testes e rebuilds se tornou repetitivo demais ao longo do aprendizado e a implementação do workflow no Github Actions me ajudou muito a desrobotizar esta tarefa!
+Todo o processo de testes e rebuilds se tornou repetitivo demais ao longo do aprendizado e a implementação do workflow 
+no Github Actions me ajudou muito a desrobotizar esta tarefa!
 
 Dessa forma, criei um yml de instruções para o CI/CD do projeto em `.github/workflows/pipeline-test.yml`
 
