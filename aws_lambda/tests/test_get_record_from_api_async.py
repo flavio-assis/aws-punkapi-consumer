@@ -2,21 +2,7 @@ from unittest import TestCase
 from unittest.mock import patch
 
 from main_async import get_records_from_api
-
-
-class MockResponse:
-    def __init__(self, json_data, status_code):
-        self.json_data = json_data
-        self.status_code = status_code
-
-    def json(self):
-        return self.json_data
-
-    def text(self):
-        return f'{self.json_data}'
-
-    def status_code(self):
-        return self.status_code
+from tests.utils.response_mocker import MockResponse
 
 
 class TestGetRecordFromApi(TestCase):

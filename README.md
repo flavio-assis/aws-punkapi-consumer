@@ -7,7 +7,7 @@ ___
 
 Projeto: PunkApi AWS Consumer
 
-Lingaguens:
+Linguagens:
   - python 3.8
   - Terraform
 
