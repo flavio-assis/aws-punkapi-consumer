@@ -14,7 +14,7 @@ variable "firehose_role_name" {
 variable "lambda_to_kinesis_stream_role_name" {
   description = "Name of the role chosen for Lambda"
   type        = string
-  default     = "S3ToKinesisStream"
+  default     = "LambdaToKinesisStream"
 }
 
 // Kinesis
