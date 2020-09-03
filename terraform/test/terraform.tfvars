@@ -1,5 +1,5 @@
 bucket_name                        = "raw-bucket-flavio-de-assis"
-environment                        = ""
+environment                        = "test"
 execution_timeout                  = 60
 firehose_role_name                 = "FirehoseRole"
 kinesis_firehose_buffer_interval   = 60

@@ -59,6 +59,9 @@ $Env:AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 $Env:AWS_DEFAULT_REGION="us-west-2"
 ```
 
+## Crie um bucket no AWS S3 para servir como seu remote backend
+Crie manualmente um bucket no AWS S3 e edite o seu arquivo `terraform/<<ambiente>>/backend.tf`
+
 ## Executar o Terraform Init
 Depois de definidas as variáveis de ambiente, execute o commando:
 ```
